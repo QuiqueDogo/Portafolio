@@ -1,0 +1,33 @@
+{
+    "welcome": "Welcome.",
+    "welcome_desc": "Explore the laboratory. Navigate through dimensions of code and design.",
+    "experience": "Experience",
+    "projects": "Projects",
+    "skills": "Skills",
+    "terminal": "Terminal",
+    "intro": "Intro",
+    "experience_log": "Experience Log",
+    "active_projects": "Active Projects",
+    "system_capabilities": "System Capabilities",
+    "core_stack": "Core Stack",
+    "terminal_access": "Terminal Access",
+    "sys_status": "SYS.STATUS: ONLINE",
+    "role_desc": "Full Stack Creative Developer",
+    "demo": "Demo",
+    "code": "Code",
+    "role": {
+        "senior": "Senior Front-End Developer",
+        "fullstack": "Full Stack Developer",
+        "junior": "Junior Web Developer"
+    },
+    "desc": {
+        "senior": "Leading the migration to React 18, implementing micro-frontends.",
+        "fullstack": "Developed e-commerce platforms using Next.js and Node.js.",
+        "junior": "Built responsive landing pages and maintained internal tools."
+    },
+    "project": {
+        "alpha": "A high-performance analytics dashboard.",
+        "neon": "Futuristic e-commerce experience.",
+        "chat": "Real-time chat with LLM integration."
+    }
+}
