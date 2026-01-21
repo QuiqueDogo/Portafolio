@@ -41,16 +41,7 @@ const Projects: React.FC = () => {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.9 }}
-            style={{
-                position: 'absolute',
-                top: '10%',
-                right: '5%',
-                width: '45%',
-                height: '80%',
-                overflowY: 'auto',
-                pointerEvents: 'auto',
-                padding: '10px'
-            }}
+            className="section-container section-right"
         >
             <Card
                 title={<Title level={3} style={{ margin: 0 }}>{t('active_projects')}</Title>}

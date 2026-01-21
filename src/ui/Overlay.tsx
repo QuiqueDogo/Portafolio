@@ -20,10 +20,10 @@ const Overlay: React.FC = () => {
     };
 
     return (
-        <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+        <div className="overlay-container">
 
             {/* Top Header */}
-            <header style={{ padding: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', pointerEvents: 'auto' }}>
+            <header className="overlay-header">
                 <div>
                     <h1 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, letterSpacing: '2px' }}>LUIS.DEV</h1>
                     <p style={{ margin: 0, fontSize: '0.8rem', opacity: 0.7 }}>{t('role_desc')}</p>
@@ -49,12 +49,12 @@ const Overlay: React.FC = () => {
                     {currentSection === Section.Intro && (
                         <motion.div
                             key="intro"
+                            className="intro-section"
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -20 }}
-                            style={{ position: 'absolute', bottom: '20%', left: '10%', maxWidth: '400px', pointerEvents: 'auto' }}
                         >
-                            <h2 style={{ fontSize: '3rem', margin: 0 }}>{t('welcome')}</h2>
+                            <h2 className="intro-title" style={{ fontSize: '3rem', margin: 0 }}>{t('welcome')}</h2>
                             <p style={{ fontSize: '1.2rem', lineHeight: 1.6 }}>
                                 {t('welcome_desc')}
                             </p>

@@ -1,4 +1,69 @@
-import { Float, MeshReflectorMaterial, Text, Box, Grid } from '@react-three/drei'
+import { Float, Text, Box, shaderMaterial } from '@react-three/drei'
+import { extend, ReactThreeFiber } from '@react-three/fiber'
+import * as THREE from 'three'
+
+// Custom Shader for Dotted Grid
+const DottedGridMaterial = shaderMaterial(
+    {
+        uSize: 1.0,
+    },
+    // Vertex Shader
+    `
+    varying vec2 vUv;
+    void main() {
+      vUv = uv;
+      gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+    }
+  `,
+    // Fragment Shader
+    `
+    varying vec2 vUv;
+    uniform float uSize;
+
+    void main() {
+        vec2 uv = vUv * uSize;
+        vec2 grid = fract(uv);
+        
+        float lineWidth = 0.01; 
+        
+        float dx = min(grid.x, 1.0 - grid.x);
+        float dy = min(grid.y, 1.0 - grid.y);
+        
+        float onLine = 0.0;
+        
+        if (dx < lineWidth) {
+            if (sin(uv.y * 10.0) > -0.2) onLine = 0.45; 
+        }
+        
+        if (dy < lineWidth) {
+            if (sin(uv.x * 10.0) > -0.2) onLine = 0.45;
+        }
+        
+        // Procedural Colors: Off-White Background, Green Lines
+        vec3 bgColor = vec3(0.051, 0.051, 0.051); 
+        vec3 lineColor = vec3(0.980, 0.980, 0.980); // #79fcc5ff
+        
+        vec3 finalColor = mix(bgColor, lineColor, onLine);
+        gl_FragColor = vec4(finalColor, 1.0);
+    }
+  `
+)
+
+extend({ DottedGridMaterial })
+
+// Add type definition for the new material
+declare global {
+    namespace JSX {
+        interface IntrinsicElements {
+            dottedGridMaterial: ReactThreeFiber.Object3DNode<THREE.ShaderMaterial, typeof DottedGridMaterial> & {
+                uColor?: THREE.Color
+                uBgColor?: THREE.Color
+                uSize?: number
+                side?: THREE.Side
+            }
+        }
+    }
+}
 
 // Minimalist Keyboard Component
 const Keyboard = (props: any) => {
@@ -49,42 +114,11 @@ const Computer = ({ position, rotation, scale = 1 }: any) => {
 export const LabEnvironment = () => {
     return (
         <group>
-            {/* Floor with Reflections */}
-            <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -2, 0]} receiveShadow>
-                <planeGeometry args={[50, 50]} />
-                <MeshReflectorMaterial
-                    blur={[300, 100]}
-                    resolution={2048}
-                    mixBlur={1}
-                    mixStrength={50}
-                    roughness={1}
-                    depthScale={1.2}
-                    minDepthThreshold={0.4}
-                    maxDepthThreshold={1.4}
-                    color="#1a1a1a"
-                    metalness={0.5}
-                    mirror={0}
-                />
+            {/* Procedural Grid Room */}
+            <mesh position={[0, 10, 0]} receiveShadow>
+                <boxGeometry args={[30, 25, 15]} />
+                <dottedGridMaterial side={THREE.BackSide} uSize={8} />
             </mesh>
-
-            {/* Back Wall (Perspective anchor) */}
-            <mesh position={[0, 8, -15]} receiveShadow>
-                <planeGeometry args={[100, 20]} />
-                <meshStandardMaterial color="#111" roughness={0.5} metalness={0.2} />
-            </mesh>
-
-            {/* Subtle Grid on Back Wall */}
-            <Grid
-                position={[0, -2, -14.9]}
-                rotation={[Math.PI / 2, 0, 0]}
-                args={[40, 40]}
-                cellSize={1}
-                sectionSize={5}
-                sectionColor="#333"
-                cellColor="#222"
-                fadeDistance={20}
-                fadeStrength={1}
-            />
 
             {/* Main Desk Area with Keyboard */}
             <group position={[0, -1, -3]}>
@@ -128,18 +162,8 @@ export const LabEnvironment = () => {
                 ))}
             </group>
 
-            {/* Floating Code Text - Bigger and further back */}
-            <group position={[0, 4, -14]}>
-                <Text
-                    fontSize={5}
-                    color="#222"
-                    anchorX="center"
-                    anchorY="middle"
-                    fillOpacity={0.5}
-                >
-                    C O D E  L A B
-                </Text>
-            </group>
+
+
         </group>
     )
 }

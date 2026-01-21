@@ -29,5 +29,15 @@
         "alpha": "A high-performance analytics dashboard.",
         "neon": "Futuristic e-commerce experience.",
         "chat": "Real-time chat with LLM integration."
+    },
+    "company": {
+        "tech": "Tech Corp Inc.",
+        "digital": "Digital Solutions Agency",
+        "startup": "StartUp Rocket"
+    },
+    "period": {
+        "present": "2023 - Present",
+        "2021": "2021 - 2023",
+        "2019": "2019 - 2021"
     }
 }

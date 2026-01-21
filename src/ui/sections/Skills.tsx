@@ -22,13 +22,7 @@ const Skills: React.FC = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
-            style={{
-                position: 'absolute',
-                top: '20%',
-                left: '30%', // Centered-ish
-                width: '40%',
-                pointerEvents: 'auto',
-            }}
+            className="section-container section-center"
         >
             <Card
                 title={<Title level={3} style={{ margin: 0, textAlign: 'center' }}>{t('system_capabilities')}</Title>}

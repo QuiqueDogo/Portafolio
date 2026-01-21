@@ -2,75 +2,69 @@ import React from 'react';
 import { Timeline, Card, Typography } from 'antd';
 import { ClockCircleOutlined, CodeOutlined, LaptopOutlined } from '@ant-design/icons';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 const { Title, Text } = Typography;
 
 const Experience: React.FC = () => {
+    const { t } = useTranslation();
+
     return (
         <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -50 }}
-            style={{
-                position: 'absolute',
-                top: '15%',
-                left: '5%',
-                width: '35%',
-                maxHeight: '70%',
-                overflowY: 'auto',
-                pointerEvents: 'auto',
-                paddingRight: '20px'
-            }}
+            className="section-container section-left"
         >
             <Card
-                title={<Title level={3} style={{ margin: 0 }}>Experience Log</Title>}
+                title={<Title level={3} style={{ margin: 0 }}>{t('experience_log')}</Title>}
                 bordered={false}
                 style={{ background: 'rgba(0, 0, 0, 0.6)', backdropFilter: 'blur(10px)', border: '1px solid #333' }}
                 headStyle={{ borderBottom: '1px solid #333', color: '#fff' }}
                 bodyStyle={{ padding: '24px 24px 0 24px' }}
             >
                 <Timeline
-                    mode="left"
+                    mode="alternate"
                     items={[
                         {
-                            label: '2023 - Present',
+                            label: t('period.present'),
                             color: 'green',
                             dot: <CodeOutlined style={{ fontSize: '16px' }} />,
                             children: (
                                 <>
-                                    <Text strong style={{ fontSize: '1.1rem', color: '#fff' }}>Senior Font-End Developer</Text>
+                                    <Text strong style={{ fontSize: '1.1rem', color: '#fff' }}>{t('role.senior')}</Text>
                                     <br />
-                                    <Text type="secondary">Tech Corp Inc.</Text>
+                                    <Text type="secondary">{t('company.tech')}</Text>
                                     <br />
-                                    <Text style={{ color: '#ccc' }}>Leading the migration to React 18, implementing micro-frontends architecture, and mentoring junior developers.</Text>
+                                    <Text style={{ color: '#ccc' }}>{t('desc.senior')}</Text>
                                 </>
                             ),
                         },
                         {
-                            label: '2021 - 2023',
+                            label: t('period.2021'),
                             color: 'blue',
                             dot: <LaptopOutlined style={{ fontSize: '16px' }} />,
                             children: (
                                 <>
-                                    <Text strong style={{ fontSize: '1.1rem', color: '#fff' }}>Full Stack Developer</Text>
+                                    <Text strong style={{ fontSize: '1.1rem', color: '#fff' }}>{t('role.fullstack')}</Text>
                                     <br />
-                                    <Text type="secondary">Digital Solutions Agency</Text>
+                                    <Text type="secondary">{t('company.digital')}</Text>
                                     <br />
-                                    <Text style={{ color: '#ccc' }}>Developed e-commerce platforms using Next.js and Node.js. Optimized database queries and improved site performance by 40%.</Text>
+                                    <Text style={{ color: '#ccc' }}>{t('desc.fullstack')}</Text>
                                 </>
                             ),
                         },
                         {
-                            label: '2019 - 2021',
+                            label: t('period.2019'),
                             color: 'gray',
                             dot: <ClockCircleOutlined style={{ fontSize: '16px' }} />,
                             children: (
                                 <>
-                                    <Text strong style={{ fontSize: '1.1rem', color: '#fff' }}>Junior Web Developer</Text>
+                                    <Text strong style={{ fontSize: '1.1rem', color: '#fff' }}>{t('role.junior')}</Text>
                                     <br />
-                                    <Text type="secondary">StartUp Rocket</Text>
+                                    <Text type="secondary">{t('company.startup')}</Text>
                                     <br />
-                                    <Text style={{ color: '#ccc' }}>Built responsive landing pages and maintained internal dashboard tools using Vue.js.</Text>
+                                    <Text style={{ color: '#ccc' }}>{t('desc.junior')}</Text>
                                 </>
                             ),
                         },

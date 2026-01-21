@@ -12,7 +12,7 @@
     "core_stack": "Stack Principal",
     "terminal_access": "Acceso Terminal",
     "sys_status": "SYS.ESTADO: EN LÍNEA",
-    "role_desc": "Desarrollador Creativo Full Stack",
+    "role_desc": "Desarrollador Full Stack",
     "demo": "Demo",
     "code": "Código",
     "role": {
@@ -29,5 +29,15 @@
         "alpha": "Dashboard de analíticas de alto rendimiento.",
         "neon": "Experiencia e-commerce futurista.",
         "chat": "Chat en tiempo real con integración LLM."
+    },
+    "company": {
+        "tech": "Tech Corp Inc.",
+        "digital": "Digital Solutions Agency",
+        "startup": "StartUp Rocket"
+    },
+    "period": {
+        "present": "2023 - Presente",
+        "2021": "2021 - 2023",
+        "2019": "2019 - 2021"
     }
 }
