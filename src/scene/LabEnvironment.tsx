@@ -1,4 +1,4 @@
-import { Float, Text, Box, shaderMaterial } from '@react-three/drei'
+import { Float, Box, shaderMaterial } from '@react-three/drei'
 import { extend, ReactThreeFiber } from '@react-three/fiber'
 import * as THREE from 'three'
 
