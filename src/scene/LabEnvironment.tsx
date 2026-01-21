@@ -5,7 +5,7 @@ import * as THREE from 'three'
 // Custom Shader for Dotted Grid
 const DottedGridMaterial = shaderMaterial(
     {
-        uSize: 1.0,
+        uSize: 10.0,
     },
     // Vertex Shader
     `

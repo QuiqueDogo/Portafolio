@@ -45,10 +45,9 @@ const Projects: React.FC = () => {
         >
             <Card
                 title={<Title level={3} style={{ margin: 0 }}>{t('active_projects')}</Title>}
-                bordered={false}
+                variant="outlined"
                 style={{ background: 'transparent', boxShadow: 'none' }}
-                headStyle={{ border: 'none', color: '#fff' }}
-                bodyStyle={{ padding: 0 }}
+                styles={{ header: { border: 'none', color: '#fff' }, body: { padding: 0 } }}
             >
                 <Row gutter={[16, 16]}>
                     {projectsData.map((project, index) => (
@@ -56,7 +55,7 @@ const Projects: React.FC = () => {
                             <Card
                                 hoverable
                                 style={{ background: 'rgba(20, 20, 20, 0.8)', border: '1px solid #333', backdropFilter: 'blur(5px)' }}
-                                bodyStyle={{ padding: '16px' }}
+                                styles={{ body: { padding: '16px' } }}
                             >
                                 <Row gutter={16}>
                                     <Col span={8}>

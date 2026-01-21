@@ -45,21 +45,14 @@ const Terminal: React.FC = () => {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 50 }}
-            style={{
-                position: 'absolute',
-                bottom: '15%',
-                left: '25%',
-                width: '50%',
-                pointerEvents: 'auto',
-            }}
+            className="terminal-container"
         >
             <Card
                 title={t('terminal_access')}
                 size="small"
-                bordered={false}
+                variant="outlined"
                 style={{ background: '#111', border: '1px solid #333', fontFamily: 'monospace' }}
-                headStyle={{ background: '#222', color: '#ccc', borderBottom: '1px solid #333' }}
-                bodyStyle={{ padding: '0px' }}
+                styles={{ header: { background: '#222', color: '#ccc', borderBottom: '1px solid #333' }, body: { padding: '0px' } }}
             >
                 <div style={{ height: '300px', overflowY: 'auto', padding: '12px', color: '#0f0' }}>
                     {history.map((line, i) => (

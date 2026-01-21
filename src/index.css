@@ -84,21 +84,30 @@ body {
 
 /* Specific alignments for desktop */
 .section-left {
-  left: 5%;
-  width: 35%;
+  left: 15%;
+  width: 75%;
   /* Default for Experience */
 }
 
 .section-right {
-  right: 5%;
-  width: 45%;
+  right: 15%;
+  width: 75%;
   /* Default for Projects */
 }
 
 .section-center {
-  left: 30%;
-  width: 40%;
+  left: 15%;
+  width: 75%;
   top: 20%;
+}
+
+.terminal-container {
+  position: absolute;
+  bottom: 15%;
+  left: 25%;
+  width: 50%;
+  pointer-events: auto;
+  transition: all 0.5s ease;
 }
 
 /* Mobile Responsive Styles */
@@ -133,11 +142,17 @@ body {
   /* Reset specific desktop alignments */
   .section-left,
   .section-right,
-  .section-center {
+  .section-center,
+  .terminal-container {
     left: 5%;
     right: 5%;
     width: 90%;
     top: 10%;
+  }
+
+  .terminal-container {
+    bottom: auto;
+    height: 75%;
   }
 
   /* Adjust fonts for mobile */

@@ -18,10 +18,9 @@ const Experience: React.FC = () => {
         >
             <Card
                 title={<Title level={3} style={{ margin: 0 }}>{t('experience_log')}</Title>}
-                bordered={false}
+                variant="outlined"
                 style={{ background: 'rgba(0, 0, 0, 0.6)', backdropFilter: 'blur(10px)', border: '1px solid #333' }}
-                headStyle={{ borderBottom: '1px solid #333', color: '#fff' }}
-                bodyStyle={{ padding: '24px 24px 0 24px' }}
+                styles={{ header: { borderBottom: '1px solid #333', color: '#fff' }, body: { padding: '24px 24px 0 24px' } }}
             >
                 <Timeline
                     mode="alternate"

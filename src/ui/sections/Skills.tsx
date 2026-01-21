@@ -26,10 +26,9 @@ const Skills: React.FC = () => {
         >
             <Card
                 title={<Title level={3} style={{ margin: 0, textAlign: 'center' }}>{t('system_capabilities')}</Title>}
-                bordered={false}
+                variant="outlined"
                 style={{ background: 'rgba(0, 0, 0, 0.7)', backdropFilter: 'blur(10px)', border: '1px solid #00b96b' }}
-                headStyle={{ borderBottom: '1px solid #333', color: '#fff' }}
-                bodyStyle={{ padding: '24px' }}
+                styles={{ header: { borderBottom: '1px solid #333', color: '#fff' }, body: { padding: '24px' } }}
             >
                 <Row gutter={[24, 24]}>
                     {skillsData.map((skill, index) => (
