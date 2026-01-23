@@ -1,4 +1,4 @@
-import { Float, Box, shaderMaterial } from '@react-three/drei'
+import { Float, Box, shaderMaterial, Sparkles, MeshReflectorMaterial } from '@react-three/drei'
 import { extend, ReactThreeFiber } from '@react-three/fiber'
 import * as THREE from 'three'
 
@@ -97,17 +97,29 @@ const Computer = ({ position, rotation, scale = 1 }: any) => {
             </Box>
             {/* Display Glow */}
             <Box args={[1.9, 1.4, 0.05]} position={[0, 1, 0.05]}>
-                <meshStandardMaterial color="#000" emissive="#00b96b" emissiveIntensity={0.2} />
+                <meshStandardMaterial color="#000" emissive="rgba(118, 173, 224, 1)" emissiveIntensity={0.2} />
             </Box>
             {/* Stand */}
             <Box args={[0.2, 1, 0.1]} position={[0, 0.5, 0]} castShadow>
-                <meshStandardMaterial color="#222" />
+                <meshStandardMaterial color="#b1ababff" />
             </Box>
             {/* Base */}
             <Box args={[0.8, 0.1, 0.8]} position={[0, 0, 0]} castShadow>
-                <meshStandardMaterial color="#222" />
+                <meshStandardMaterial color="#b1ababff" />
             </Box>
         </group>
+    )
+}
+
+const scale: number | any = Array.from({ length: 50 })
+
+// Holographic Ring Component
+const HologramRing = (props: any) => {
+    return (
+        <mesh {...props}>
+            <torusGeometry args={[1, 0.02, 16, 100]} />
+            <meshBasicMaterial color="#00b96b" transparent opacity={0.3} side={THREE.DoubleSide} />
+        </mesh>
     )
 }
 
@@ -115,15 +127,38 @@ export const LabEnvironment = () => {
     return (
         <group>
             {/* Procedural Grid Room */}
-            <mesh position={[0, 10, 0]} receiveShadow>
+            {/* <mesh  position={[0, 10, 0]} >
                 <boxGeometry args={[30, 25, 15]} />
                 <dottedGridMaterial side={THREE.BackSide} uSize={8} />
+            </mesh> */}
+            {/* Reflective Floor */}
+
+            <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -2.05, 0]}>
+                <planeGeometry args={[50, 50]} />
+                <MeshReflectorMaterial
+                    blur={[300, 100]}
+                    resolution={1024}
+                    mixBlur={1}
+                    mixStrength={80}
+                    roughness={1}
+                    depthScale={1.2}
+                    minDepthThreshold={0.4}
+                    maxDepthThreshold={1.4}
+                    color="#101010"
+                    metalness={0.5}
+                    mirror={0}
+                />
             </mesh>
 
             {/* Main Desk Area with Keyboard */}
             <group position={[0, -1, -3]}>
                 <Float speed={2} rotationIntensity={0.1} floatIntensity={0.5}>
                     <Keyboard rotation={[0.4, 0, 0]} position={[0, 0, 0]} />
+                </Float>
+                {/* Floating Hologram Rings around keyboard */}
+                <Float speed={4} rotationIntensity={0.5} floatIntensity={1}>
+                    <HologramRing rotation={[Math.PI / 2, 0, 0]} position={[0, 0.5, 0]} scale={[2, 2, 2]} />
+                    <HologramRing rotation={[Math.PI / 1.8, 0, 0]} position={[0, 0.5, 0]} scale={[2.5, 2.5, 2.5]} />
                 </Float>
             </group>
 
@@ -152,7 +187,8 @@ export const LabEnvironment = () => {
                     </Box>
                 ))}
 
-                <Box args={[2, 6, 2]} position={[12, 1, 0]}>
+
+                <Box args={[2, 6, 2] as [number, number, number]} position={[12, 1, 0]}>
                     <meshStandardMaterial color="#111" />
                 </Box>
                 {Array.from({ length: 10 }).map((_, i) => (
@@ -163,7 +199,7 @@ export const LabEnvironment = () => {
             </group>
 
 
-
+            <Sparkles count={scale.length} size={10} position={[0, 0.9, 0]} scale={[15, 15, 15]} speed={0.3} />
         </group>
     )
 }

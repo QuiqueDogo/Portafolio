@@ -16,7 +16,8 @@ export const Experience = () => {
                 <Suspense fallback={null}>
                     <LabEnvironment />
                 </Suspense>
-                <color attach="background" args={['#000000']} />
+                <fog attach="fog" args={['#050505', 5, 30]} />
+                <color attach="background" args={['#050505']} />
             </Canvas>
             <Loader />
         </>
